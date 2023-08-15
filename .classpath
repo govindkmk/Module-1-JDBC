@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="DAO Pattern/src"/>
+	<classpathentry kind="src" path="Singleton Object Pattern/src"/>
+	<classpathentry kind="src" path="Student_Management_System/src"/>
+	<classpathentry kind="output" path="DAO Pattern/bin"/>
+</classpath>
