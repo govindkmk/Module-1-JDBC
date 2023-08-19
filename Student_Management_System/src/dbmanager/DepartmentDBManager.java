@@ -13,14 +13,6 @@ import models.Department;
 
 public class DepartmentDBManager {
 	
-	public void display() {
-		System.out.println("1. Add Department : ");
-		System.out.println("2. Update Department : ");
-		System.out.println("3. Get Department : ");
-		System.out.println("4. Get all Departments : ");
-		System.out.println("5. Delete Department : ");
-	}
-	
 	private final String INSERT_DEPARTMENT_QUERY = "INSERT INTO DEPARTMENT(d_ID, d_name, d_code) VALUES(?,?,?); ";
 	private final String UPDATE_DEPARTMENT_QUERY = "update department set d_name = ?, d_code = ? WHERE d_ID = ?; ";
 	private final String GET_DEPARTMENT_QUERY = "SELECT * FROM DEPARTMENT WHERE d_ID = ?; ";

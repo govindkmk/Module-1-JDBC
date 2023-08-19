@@ -14,13 +14,6 @@ import models.Student;
 
 public class StudentDbManager {
 
-	public void display() {
-		System.out.println("1. Add Student");
-		System.out.println("2. Update Student");
-		System.out.println("3. Get Student");
-		System.out.println("4. Get all Students");
-		System.out.println("5. Delete Students");
-	}
 	
 	private final String INSERT_STUDENT_QUERY = "INSERT INTO STUDENT(s_ID, s_rollNumber, s_name, s_fatherName, s_age, s_email, d_ID) VALUES(?, ?, ?, ?, ?, ?, ?); "; 
 	private final String UPDATE_STUDENT_QUERY = "UPDATE STUDENT SET s_rollNumber = ?, s_name = ?, s_fatherName = ?, s_age = ?, s_email = ?, d_ID = ? WHERE s_ID = ?; ";

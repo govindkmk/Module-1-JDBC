@@ -13,13 +13,6 @@ import models.Course;
 
 public class CourseDbManager {
 	
-	public void display() {
-		System.out.println("\n1. Add Course");
-		System.out.println("2. Update Course");
-		System.out.println("3. Get Course");
-		System.out.println("4. Get all Courses");
-		System.out.println("5. Delete Course\n");
-	}
 	
 	private final String INSERT_COURSE_QUERY = "INSERT INTO COURSE(c_ID, c_name, c_code) VALUES(?,?,?); ";
 	private final String UPDATE_COURSE_QUERY = "UPDATE COURSE SET c_name = ?, c_code = ? WHERE c_ID = ?; ";

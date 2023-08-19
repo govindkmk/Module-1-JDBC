@@ -15,13 +15,7 @@ import models.StudentCourse;
 
 public class StudentCourseDbManager {
 	
-	public void display() {
-		System.out.println("1. Assign Course to Student");
-		System.out.println("2. Update Marks of Student");
-		System.out.println("3. Get Student Courses");
-		System.out.println("4. Get all Students Courses");
-	}
-
+	
 	private final String INSERT_STUDENT_COURSE_QUERY = "INSERT INTO STUDENT_COURSE_DATA(s_ID, c_ID) VALUES(?,?); ";
 	private final String UPDATE_MARKS_QUERY = "UPDATE STUDENT_COURSE_DATA obtained_marks = ? WHERE id = ?; ";
 	private final String GET_STUDENT_COURSE_QUERY = "SELECT  s.s_name, c.c_name, scd.obtained_marks FROM STUDENT_COURSE_DATA scd INNER JOIN student s ON scd.s_ID = s.s_ID INNER JOIN COURSE c  ON scd.c_ID = c.c_ID WHERE scd.s_ID = ?; ";
