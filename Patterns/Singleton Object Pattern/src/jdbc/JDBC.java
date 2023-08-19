@@ -2,6 +2,7 @@ package jdbc;
 
 
 import java.sql.SQLException;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,6 +14,7 @@ import dbmanager.CourseDbManager;
 import dbmanager.DepartmentDBManager;
 import dbmanager.StudentCourseDbManager;
 import dbmanager.StudentDbManager;
+import menu.DisplayMenu;
 import dbconnection.DbConnection;
 
 public class JDBC {
@@ -38,6 +40,8 @@ public class JDBC {
 		StudentDbManager studentDbManager = new StudentDbManager();
 		StudentCourseDbManager studentCourseDbManager = new StudentCourseDbManager();
 		
+		DisplayMenu displayMenu = new DisplayMenu();
+		
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.println("\n============Welcome Student Leaning Management System============\n");
@@ -48,7 +52,7 @@ public class JDBC {
 		System.out.println("\n\nPlease Select your choice : ");
 		choice = sc.nextInt();
 		
-		int id, d_id, s_id, c_id, age, obtained_marks;
+		int id, departmentId, studentId, courseId, age, obtained_marks;
 		String name, code, fatherName, email, rollNumber;
 		
 		char ch = 'y';
@@ -58,7 +62,7 @@ public class JDBC {
 			// Department CRUD
 			case 1:
 				while(ch == 'y') {
-					departmentDbManager.display();
+					displayMenu.departmentMenu();
 					System.out.println("\n\nPlease Select your choice : ");
 					choice = sc.nextInt();
 					switch(choice) {
@@ -66,7 +70,7 @@ public class JDBC {
 					// Add Department 
 					case 1:
 						System.out.println("Enter Department ID : ");
-						d_id = sc.nextInt();
+						departmentId = sc.nextInt();
 						sc.skip("\\R?");
 						
 						System.out.println("Enter Department Name : ");
@@ -76,7 +80,7 @@ public class JDBC {
 						code = sc.next();
 
 						Department dpt = new Department();
-						dpt.setId(d_id);
+						dpt.setId(departmentId);
 						dpt.setName(name);
 						dpt.setCode(code);
 						
@@ -87,7 +91,7 @@ public class JDBC {
 					case 2:
 						
 						System.out.println("Enter Department ID : ");
-						d_id = sc.nextInt();
+						departmentId = sc.nextInt();
 						sc.skip("\\R?");
 						
 						System.out.println("Enter Department Name for Update : ");
@@ -98,7 +102,7 @@ public class JDBC {
 						code = sc.nextLine();
 						
 						Department dpt1 = new Department();
-						dpt1.setId(d_id);
+						dpt1.setId(departmentId);
 						dpt1.setName(name);
 						dpt1.setCode(code);
 						
@@ -110,10 +114,10 @@ public class JDBC {
 					// Get Department by ID
 					case 3:
 						System.out.println("Enter Department ID : ");
-						d_id = sc.nextInt();
+						departmentId = sc.nextInt();
 						
 						
-						departmentDbManager.getDepartmentById(d_id);;
+						departmentDbManager.getDepartmentById(departmentId);;
 						
 						
 						break;
@@ -134,10 +138,10 @@ public class JDBC {
 					// Delete Department
 					case 5:
 						System.out.println("Enter Department ID : ");
-						d_id = sc.nextInt();
+						departmentId = sc.nextInt();
 						
 						
-						departmentDbManager.deleteDepartment(d_id);
+						departmentDbManager.deleteDepartment(departmentId);
 						
 						break;
 					default:
@@ -151,14 +155,14 @@ public class JDBC {
 			// Course CRUD
 			case 2:
 				while(ch == 'y') {
-					courseDbManager.display();
+					displayMenu.courseMenu();
 					System.out.println("\n\nPlease Select your choice : ");
 					choice = sc.nextInt();
 			
 					switch(choice) {
 					case 1:
 						System.out.println("Enter Course ID : ");
-						c_id = sc.nextInt();
+						courseId = sc.nextInt();
 						sc.skip("\\R?");
 						
 						System.out.println("Enter Course Name : ");
@@ -168,7 +172,7 @@ public class JDBC {
 						code = sc.next();
 						
 						Course course = new Course();
-						course.setCourse_id(c_id);
+						course.setCourse_id(courseId);
 						course.setCourse_name(name);
 						course.setCourse_code(code);
 						
@@ -177,7 +181,7 @@ public class JDBC {
 						
 					case 2:
 						System.out.println("Enter Course ID : ");
-						c_id = sc.nextInt();
+						courseId = sc.nextInt();
 						sc.skip("\\R?");
 						
 						System.out.println("Enter Course Name : ");
@@ -187,7 +191,7 @@ public class JDBC {
 						code = sc.nextLine();
 						
 						Course course1 = new Course();
-						course1.setCourse_id(c_id);
+						course1.setCourse_id(courseId);
 						course1.setCourse_name(name);
 						course1.setCourse_code(code);
 						
@@ -196,9 +200,9 @@ public class JDBC {
 						
 					case 3:
 						System.out.println("Enter Course ID : ");
-						c_id = sc.nextInt();
+						courseId = sc.nextInt();
 						
-						courseDbManager.getCourseById(c_id);
+						courseDbManager.getCourseById(courseId);
 						
 						
 						break;
@@ -217,9 +221,9 @@ public class JDBC {
 						
 					case 5:
 						System.out.println("Enter Course ID : ");
-						c_id = sc.nextInt();
+						courseId = sc.nextInt();
 						
-						courseDbManager.deleteCourse(c_id);
+						courseDbManager.deleteCourse(courseId);
 						break;
 						
 					default:
@@ -234,14 +238,14 @@ public class JDBC {
 			// Student CRUD
 			case 3:
 				while(ch == 'y') {
-					studentDbManager.display();
+					displayMenu.studentMenu();
 					System.out.println("\n\nPlease Select your choice : ");
 					choice = sc.nextInt();
 					
 					switch(choice) {
 					case 1:
 						System.out.println("Enter Student ID : ");
-						s_id = sc.nextInt();
+						studentId = sc.nextInt();
 						sc.skip("\\R?");
 						
 						System.out.println("Enter Student Roll Number : ");
@@ -261,11 +265,11 @@ public class JDBC {
 						age = sc.nextInt();
 						
 						System.out.println("Enter Department Id : ");
-						d_id = sc.nextInt();
+						departmentId = sc.nextInt();
 						
 						Student student = new Student();
 						
-						student.setId(s_id);
+						student.setId(studentId);
 						student.setRollNumber(rollNumber);
 						student.setName(name);
 						student.setFatherName(fatherName);
@@ -273,7 +277,7 @@ public class JDBC {
 						student.setEmail(email);
 						
 						Department department = new Department();
-						department.setId(d_id);
+						department.setId(departmentId);
 						student.setDepartment(department);
 						
 						studentDbManager.addStudent(student);
@@ -283,7 +287,7 @@ public class JDBC {
 						
 					case 2:
 						System.out.println("Enter Student ID : ");
-						s_id = sc.nextInt();
+						studentId = sc.nextInt();
 						sc.skip("\\R?");
 						
 						System.out.println("Enter Student Roll Number for Update : ");
@@ -303,11 +307,11 @@ public class JDBC {
 						age = sc.nextInt();
 						
 						System.out.println("Enter Department Id for Update : ");
-						d_id = sc.nextInt();
+						departmentId = sc.nextInt();
 						
 						Student student1 = new Student();
 						
-						student1.setId(s_id);
+						student1.setId(studentId);
 						student1.setRollNumber(rollNumber);
 						student1.setName(name);
 						student1.setFatherName(fatherName);
@@ -315,7 +319,7 @@ public class JDBC {
 						student1.setEmail(email);
 						
 						Department department1 = new Department();
-						department1.setId(d_id);
+						department1.setId(departmentId);
 						student1.setDepartment(department1);
 						
 						studentDbManager.updateStudent(student1);
@@ -325,9 +329,9 @@ public class JDBC {
 						
 					case 3:
 						System.out.println("Enter Student ID : ");
-						s_id = sc.nextInt();
+						studentId = sc.nextInt();
 						
-						studentDbManager.getStudentById(s_id);
+						studentDbManager.getStudentById(studentId);
 						break;
 						
 					case 4:
@@ -348,9 +352,9 @@ public class JDBC {
 						
 					case 5:
 						System.out.println("Enter Student Id : ");
-						s_id = sc.nextInt();
+						studentId = sc.nextInt();
 						
-						studentDbManager.deleteStudent(s_id);
+						studentDbManager.deleteStudent(studentId);
 						break;
 						
 					default:
@@ -365,18 +369,18 @@ public class JDBC {
 			// Student Course CRUD
 			case 4:
 				while(ch == 'y'){
-					studentCourseDbManager.display();
+					displayMenu.studentCourseMenu();
 					System.out.println("\n\nPlease Select your choice : ");
 					choice = sc.nextInt();
 					
 					switch(choice) {
 					case 1:
 						System.out.println("Enter Student ID : ");
-						s_id = sc.nextInt();
+						studentId = sc.nextInt();
 						sc.skip("\\R?");
 						
 						System.out.println("Enter Course ID : ");
-						c_id = sc.nextInt();
+						courseId = sc.nextInt();
 						
 						System.out.println("Enter Obtained Marks : ");
 						obtained_marks = sc.nextInt();
@@ -415,9 +419,9 @@ public class JDBC {
 						
 					case 3:
 						System.out.println("Enter Student ID : ");
-						s_id = sc.nextInt();
+						studentId = sc.nextInt();
 						
-						studentCourseDbManager.getStudentCourseById(s_id);
+						studentCourseDbManager.getStudentCourseById(studentId);
 						
 						break;
 						

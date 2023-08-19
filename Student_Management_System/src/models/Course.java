@@ -1,6 +1,7 @@
 package models;
 
 public class Course {
+	
 	private int course_id;
 	private String course_name;
 	private String course_code;
